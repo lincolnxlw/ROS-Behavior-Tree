@@ -19,6 +19,7 @@
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "test_action");
+    ros::NodeHandle nh;
 
     // create the action client
     // true causes the client to spin its own thread
@@ -35,7 +36,7 @@ int main(int argc, char **argv)
     bool isRunning = false;
 
 
-    while (command != 3)
+    while (command != 3 && nh.ok())
     {
         ROS_INFO("Send a command: 1:start the action | 2:stop the action | 3:exit the program");
         std::cin >> command;
