@@ -20,7 +20,6 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "test_action");
     ros::NodeHandle nh;
-
     // create the action client
     // true causes the client to spin its own thread
     actionlib::SimpleActionClient<behavior_tree_core::BTAction> ac("action", true);

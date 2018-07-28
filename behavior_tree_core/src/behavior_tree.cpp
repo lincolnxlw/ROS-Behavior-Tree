@@ -15,14 +15,14 @@
 #include <dot_bt.h>
 #include <ros/ros.h>
 
-
-
-void Execute(BT::ControlNode* root, int TickPeriod_milliseconds)
+void Execute(BT::ControlNode* root, int TickPeriod_milliseconds, bool need_drawing)
 {
-    std::cout << "Start Drawing!" << std::endl;
-    // Starts in another thread the drawing of the BT
-    std::thread t2(&drawTree, root);
-    t2.detach();
+    if (need_drawing) {
+        // Starts in another thread the drawing of the BT
+        std::cout << "Start Drawing!" << std::endl;
+        std::thread t2(&drawTree, root);
+        t2.detach();
+    }
     BT::DotBt dotbt(root);
     std::thread t(&BT::DotBt::publish, dotbt);
 
@@ -34,14 +34,15 @@ void Execute(BT::ControlNode* root, int TickPeriod_milliseconds)
 
         // Ticking the root node
         root->Tick();
-        // Printing its state
-        // root->GetNodeState();
 
-        if (root->get_status() != BT::RUNNING)
-        {
-            // when the root returns a status it resets the colors of the tree
-            root->ResetColorState();
+        if (need_drawing) {
+            if (root->get_status() != BT::RUNNING)
+            {
+                // when the root returns a status it resets the colors of the tree
+                root->ResetColorState();
+            }
         }
+
         std::this_thread::sleep_for(std::chrono::milliseconds(TickPeriod_milliseconds));
     }
 }
