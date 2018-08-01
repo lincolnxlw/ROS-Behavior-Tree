@@ -32,7 +32,7 @@ BT::FallbackNodeWithMemory::~FallbackNodeWithMemory() {}
 
 BT::ReturnStatus BT::FallbackNodeWithMemory::Tick()
 {
-    DEBUG_STDOUT(get_name() << " ticked, memory counter: "<< current_child_idx_);
+    //DEBUG_STDOUT(get_name() << " ticked, memory counter: "<< current_child_idx_);
 
     // Vector size initialization. N_of_children_ could change at runtime if you edit the tree
     N_of_children_ = children_nodes_.size();

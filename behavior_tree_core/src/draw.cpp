@@ -29,8 +29,7 @@ void * font_array[3] = {GLUT_BITMAP_8_BY_13, GLUT_BITMAP_8_BY_13, GLUT_BITMAP_8_
 void * font = font_array[0];
 float additional_spacing_array[10];
 bool is_number_pressed_array[10];
-unsigned char number_char[4] = {'0', '1', '2', '3'};
-
+unsigned char number_char[8] = {'0', '1', '2', '3','4','5','6','7'};
 
 float x = 0.0;
 float y = 0.4;
@@ -39,7 +38,7 @@ float y_offset = 0.15;
 float r_color = 1;
 float g_color = 1;
 float b_color = 1;
-GLfloat x_space = 0.06;
+GLfloat x_space = 0.25;
 
 int depth;
 
@@ -47,9 +46,6 @@ double zoom = 1.0f;
 
 float fraction = 0.1f;
 float zoom_fraction = 0.1f;
-
-
-
 
 void drawEllipse(float xpos, float ypos, float xradius, float yradius)
 {
@@ -285,7 +281,7 @@ void draw_straight_edge(GLfloat parent_x, GLfloat parent_y,
 // Keyboard callback function ( called on keyboard event handling )
 void keyboard(unsigned char key, int x, int y)
 {
-    for (int i = 1; i < 4; i++)
+    for (int i = 1; i < 8; i++)
     {
         if (key == number_char[i])
         {
@@ -300,7 +296,7 @@ void keyboard(unsigned char key, int x, int y)
 
 void keyboard_release(unsigned char key, int x, int y)
 {
-    for (int i = 1; i < 4; i++)
+    for (int i = 1; i < 8; i++)
     {
         if (key == number_char[i])
         {

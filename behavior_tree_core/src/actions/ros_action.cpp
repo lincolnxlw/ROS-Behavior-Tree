@@ -40,7 +40,7 @@ void BT::ROSAction::WaitForTick()
         node_result.status = BT::RUNNING;
         set_status(BT::RUNNING);
         // Perform action...
-        ROS_INFO("I am running the request to %s", get_name().c_str());
+        //ROS_INFO("I am running the request to %s", get_name().c_str());
         action_client_.sendGoal(goal);
         do
         {
@@ -57,7 +57,7 @@ void BT::ROSAction::WaitForTick()
         }
         else
         {
-            ROS_INFO("The Server Has Replied");
+            //ROS_INFO("The Server Has Replied");
             // Set this node status according to what the external node replied
             set_status((ReturnStatus)node_result.status);
         }

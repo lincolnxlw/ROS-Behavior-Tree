@@ -30,7 +30,7 @@ BT::ROSCondition::~ROSCondition() {}
 
 BT::ReturnStatus BT::ROSCondition::Tick()
 {
-    ROS_INFO("I am running the request");
+    //ROS_INFO("I am running the request");
 
     // Condition checking and state update
     action_client_.sendGoal(goal);
