@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(behavior_tree_core)
 
-
-
 find_package(catkin REQUIRED COMPONENTS
   actionlib
   actionlib_msgs
@@ -25,7 +23,6 @@ generate_messages(
   DEPENDENCIES actionlib_msgs std_msgs # Or other packages containing msgs
 )
 
-
 add_definitions(-Wall -lglut -lGL -std=c++0x)
 
 catkin_package(
@@ -33,7 +30,6 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
-
 
 
 #########################################################
