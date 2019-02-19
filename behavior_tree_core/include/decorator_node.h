@@ -10,34 +10,24 @@
 *   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#ifndef DECORATOR_NODE_H
+#define DECORATOR_NODE_H
 
-#include <behavior_tree.h>
+#include <control_node.h>
+#include <string>
 
-int main(int argc, char **argv)
+namespace BT
 {
-    ros::init(argc, argv, "BehaviorTree");
-    try
-    {
-        int TickPeriod_milliseconds = 1000;
+class DecoratorNode : public ControlNode
+{
+public:
+    // Constructor
+    explicit DecoratorNode(std::string name);
+    ~DecoratorNode();
+    void AddChild(TreeNode* child);
+    int DrawType();
+    BT::ReturnStatus Tick();    // The method that is going to be executed what the node is ticked
+};
+}  // namespace BT
 
-
-        BT::ROSAction* action = new BT::ROSAction("action");
-        BT::NegationNode* decorator = new BT::NegationNode("decorator");
-        BT::ROSCondition* condition = new BT::ROSCondition("condition");
-
-
-        BT:: SequenceNode* sequence1 = new BT::SequenceNode("seq1");
-
-        sequence1->AddChild(decorator);
-        decorator->AddChild(condition);
-        sequence1->AddChild(action);
-
-        Execute(sequence1, TickPeriod_milliseconds);  // from BehaviorTree.cpp
-    }
-    catch (BT::BehaviorTreeException& Exception)
-    {
-        std::cout << Exception.what() << std::endl;
-    }
-
-    return 0;
-}
+#endif  // DECORATOR_NODE_H

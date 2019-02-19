@@ -23,6 +23,9 @@
 #include <fallback_node.h>
 #include <sequence_node.h>
 
+#include <decorator_node.h>
+#include <decorators/negation_node.h>
+
 #include <sequence_node_with_memory.h>
 #include <fallback_node_with_memory.h>
 

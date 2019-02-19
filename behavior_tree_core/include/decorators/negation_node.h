@@ -10,34 +10,23 @@
 *   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#ifndef NEGATION_NODE_H
+#define NEGATION_NODE_H
 
-#include <behavior_tree.h>
+#include <decorator_node.h>
+#include <string>
 
-int main(int argc, char **argv)
+namespace BT
 {
-    ros::init(argc, argv, "BehaviorTree");
-    try
-    {
-        int TickPeriod_milliseconds = 1000;
+class NegationNode : public DecoratorNode
+{
+public:
+    // Constructor
+    explicit NegationNode(std::string name);
+    ~NegationNode();
+    BT::ReturnStatus Tick();
+    BT::ReturnStatus convert(BT::ReturnStatus input);
+};
+}  // namespace BT
 
-
-        BT::ROSAction* action = new BT::ROSAction("action");
-        BT::NegationNode* decorator = new BT::NegationNode("decorator");
-        BT::ROSCondition* condition = new BT::ROSCondition("condition");
-
-
-        BT:: SequenceNode* sequence1 = new BT::SequenceNode("seq1");
-
-        sequence1->AddChild(decorator);
-        decorator->AddChild(condition);
-        sequence1->AddChild(action);
-
-        Execute(sequence1, TickPeriod_milliseconds);  // from BehaviorTree.cpp
-    }
-    catch (BT::BehaviorTreeException& Exception)
-    {
-        std::cout << Exception.what() << std::endl;
-    }
-
-    return 0;
-}
+#endif  // NEGATION_NODE_H
