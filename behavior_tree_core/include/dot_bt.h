@@ -78,7 +78,7 @@ public:
    */
   explicit DotBt(TreeNode* root,
                  const std::string& topic = "/bt_dotcode",
-                 double ros_rate = 50,
+                 double ros_rate = 5.0,
                  bool left_right = false,
                  bool multiple_parents = false);
 
